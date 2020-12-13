@@ -16,6 +16,7 @@ class CreditCardWidget extends StatefulWidget {
     this.textStyle,
     this.cardBgColor = const Color(0xff1b447b),
     this.backGroundImage,
+    this.withChip = true,
   })  : assert(cardNumber != null),
         assert(showBackView != null),
         super(key: key);
@@ -31,6 +32,7 @@ class CreditCardWidget extends StatefulWidget {
   final double height;
   final double width;
   final String backGroundImage;
+  final  bool withChip
 
   @override
   _CreditCardWidgetState createState() => _CreditCardWidgetState();
@@ -126,7 +128,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
       children: <Widget>[
         AnimationCard(
           animation: _frontRotation,
-          child: buildFrontContainer(width, height, context, orientation),
+          child: buildFrontContainer(width, height, context, orientation, widget.withChip),
         ),
         AnimationCard(
           animation: _backRotation,
@@ -265,6 +267,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
     double height,
     BuildContext context,
     Orientation orientation,
+    bool withChip
   ) {
     final TextStyle defaultTextStyle = Theme.of(context).textTheme.title.merge(
           TextStyle(
@@ -301,10 +304,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
                 Container(
                   height: 16,
                 ),
-                getChipImage(),
-                Container(
+                 withChip ? getChipImage() : Container(),
+              withChip ?  Container(
                   height: 16,
-                ),
+                ) : Container(),
                 Padding(
                   padding: const EdgeInsets.only(left: 16),
                   child: Text(
@@ -684,7 +687,7 @@ Container getRandomBackground(double height, double width, String url) {
         Expanded(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
-            child: Image.network(
+            child: Image.asset(
               url,
               width: width,
               height: height,
