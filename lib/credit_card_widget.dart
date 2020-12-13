@@ -32,7 +32,7 @@ class CreditCardWidget extends StatefulWidget {
   final double height;
   final double width;
   final String backGroundImage;
-  final  bool withChip
+  final  bool withChip;
 
   @override
   _CreditCardWidgetState createState() => _CreditCardWidgetState();
