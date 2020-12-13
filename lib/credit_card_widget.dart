@@ -15,6 +15,7 @@ class CreditCardWidget extends StatefulWidget {
     this.width,
     this.textStyle,
     this.cardBgColor = const Color(0xff1b447b),
+    this.backGroundImage,
   })  : assert(cardNumber != null),
         assert(showBackView != null),
         super(key: key);
@@ -29,6 +30,7 @@ class CreditCardWidget extends StatefulWidget {
   final Duration animationDuration;
   final double height;
   final double width;
+  final String backGroundImage;
 
   @override
   _CreditCardWidgetState createState() => _CreditCardWidgetState();
@@ -170,7 +172,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
           (orientation == Orientation.portrait ? height / 4 : height / 2),
       child: Stack(
         children: <Widget>[
-          getRandomBackground(widget.height, widget.width ?? width),
+          widget.backGroundImage != null ? getRandomBackground(widget.height, widget.width ?? width, widget.backGroundImage) : Container(),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -280,7 +282,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
           (orientation == Orientation.portrait ? height / 4 : height / 2),
       child: Stack(
         children: <Widget>[
-          getRandomBackground(widget.height, widget.width),
+           widget.backGroundImage != null ? getRandomBackground(widget.height, widget.width, widget.backGroundImage) : Container(),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -673,7 +675,7 @@ enum CardType {
 
 String randomPic = 'https://placeimg.com/680/400/nature';
 
-Container getRandomBackground(double height, double width) {
+Container getRandomBackground(double height, double width, String url) {
   return Container(
     child: Flex(
       direction: Axis.horizontal,
@@ -683,7 +685,7 @@ Container getRandomBackground(double height, double width) {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16.0),
             child: Image.network(
-              randomPic,
+              url,
               width: width,
               height: height,
               fit: BoxFit.cover,
