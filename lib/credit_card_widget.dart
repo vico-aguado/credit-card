@@ -273,7 +273,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
           TextStyle(
             color: Colors.white,
             fontFamily: 'halter',
-            fontSize: 16,
+            fontSize: 14,
             package: 'credit_card',
           ),
         );
@@ -327,7 +327,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'Expiry',
+                          'Exp.',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'halter',
@@ -340,7 +340,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
                         ),
                         Text(
                           widget.expiryDate.isEmpty || widget.expiryDate == null
-                              ? 'MM/YY'
+                              ? 'MM/AA'
                               : widget.expiryDate,
                           style: widget.textStyle ?? defaultTextStyle,
                         ),
@@ -355,14 +355,14 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
                     child: Text(
                       widget.cardHolderName.isEmpty ||
                               widget.cardHolderName == null
-                          ? 'CARD HOLDER'
+                          ? 'TITULAR'
                           : widget.cardHolderName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'halter',
-                        fontSize: 14,
+                        fontSize: 13,
                         package: 'credit_card',
                       ),
                     ),
